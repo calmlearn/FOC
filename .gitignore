@@ -1,0 +1,12 @@
+Objects/
+Listings/
+DebugConfig/
+RTE/
+*.o
+*.crf
+*.d
+*.axf
+*.hex
+*.map
+*.uvguix.*
+*.scvd
