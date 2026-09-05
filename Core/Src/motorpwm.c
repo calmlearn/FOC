@@ -50,9 +50,9 @@ void Motor_SetDuty(float duty_u,float duty_v,float duty_w)
 	
 	arr = __HAL_TIM_GET_AUTORELOAD(&htim1);
 	
-	ccr_u = (uint32_t)(duty_u * (float)(arr+1U));
-    ccr_v = (uint32_t)(duty_v * (float)(arr+1U));
-    ccr_w = (uint32_t)(duty_w * (float)(arr+1U));
+	ccr_u = (uint32_t)(duty_u * (float)arr);
+    ccr_v = (uint32_t)(duty_v * (float)arr);
+    ccr_w = (uint32_t)(duty_w * (float)arr);
 	
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, ccr_u);
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, ccr_v);
