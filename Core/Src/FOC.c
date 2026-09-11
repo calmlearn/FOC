@@ -2,7 +2,7 @@
 #include "math.h"
 #include "motorpwm.h"
 
-#define PI 3.14159265
+#include "config.h"
 
 float motorAngle(float angle)
 {

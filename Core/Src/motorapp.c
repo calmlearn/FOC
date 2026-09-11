@@ -3,9 +3,7 @@
 #include "tim.h"
 #include <math.h>
 
-#define PI 3.14159265f
-#define MOTOR_POLE_PAIRS  7.0f
-#define dt        0.001f   // TIM2：1ms，即1kHz
+#include "config.h"
 
 static float electrical_angle = 0.0f;
 

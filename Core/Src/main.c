@@ -29,6 +29,8 @@
 #include "motorpwm.h"
 #include "FOC.h"
 #include "motorapp.h"
+#include <string.h>
+#include "config.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -38,7 +40,10 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define PI 3.14159265f
+#define dt 0.001
+#define e_zero_offset 3.9998f //电角度偏置
+#define angle_zero 1.469f //机械角度偏置
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -49,7 +54,10 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-	
+static volatile uint8_t uart_send_request = 0;
+static volatile uint8_t uart_tx_busy = 0;
+static uint8_t uart_tx_buffer[12];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -102,12 +110,33 @@ int main(void)
   MotorPWM_Enable();
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
-
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  
+		
+	  if((uart_send_request ==1)&&(uart_tx_busy==0))
+	  {
+			float angle = AS5600_GetAngle();
+			float speed = AS5600_GetSpeed();
+
+			uart_send_request = 0;
+
+			memcpy(&uart_tx_buffer[0], &angle, sizeof(float));
+			memcpy(&uart_tx_buffer[4], &speed, sizeof(float));
+
+			uart_tx_buffer[8]  = 0x00;
+			uart_tx_buffer[9]  = 0x00;
+			uart_tx_buffer[10] = 0x80;
+			uart_tx_buffer[11] = 0x7F;
+
+			uart_tx_busy = 1;
+		  
+		  if(HAL_UART_Transmit_IT(&huart2,uart_tx_buffer,sizeof(uart_tx_buffer)) != HAL_OK)
+		  {
+			  uart_tx_busy = 0;
+		  }
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -157,10 +186,33 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+	static uint16_t usart_cnt = 0;
     if (htim->Instance == TIM2)
     {
-        //uint16_t cnt = 0;
-		Motor_OpenLoopUpdate(30.0f, 0.5f);
+		
+        usart_cnt++;
+		
+		float mechanical_angle = AS5600_GetAngle();
+		
+		float electrical_angle = motorAngle(7.0f * mechanical_angle);
+		
+		SVPWM_FOC(0.0f, 0.2f, electrical_angle);
+		
+		HAL_StatusTypeDef I2C_statu =  AS5600_Read_RawAngle();
+		
+		if(usart_cnt>=10)
+		{
+			uart_send_request = 1;
+		}
+		//接下来是闭环控制阶段
+    }
+}
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2)
+    {
+        uart_tx_busy = 0;
     }
 }
 /* USER CODE END 4 */
