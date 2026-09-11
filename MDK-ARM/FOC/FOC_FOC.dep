@@ -1,7 +1,7 @@
 Dependencies for Project 'FOC', Target 'FOC': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARM_Compiler_5.06u7
-F (startup_stm32f103xb.s)(0x6AA3A126)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xb.lst --xref -o foc\startup_stm32f103xb.o --depend foc\startup_stm32f103xb.d)
-F (..\Core\Src\AS5600.c)(0x6AA3B59D)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o foc\as5600.o --omf_browse foc\as5600.crf --depend foc\as5600.d)
+F (startup_stm32f103xb.s)(0x6AA3BA3F)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xb.lst --xref -o foc\startup_stm32f103xb.o --depend foc\startup_stm32f103xb.d)
+F (..\Core\Src\AS5600.c)(0x6AA3BA0D)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o foc\as5600.o --omf_browse foc\as5600.crf --depend foc\as5600.d)
 I (../Core/Inc/main.h)(0x6A997DA5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x6A8A9F15)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x6A997DA5)
@@ -33,9 +33,9 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x6A8A9F15)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x6A8A9F15)
 I (../Core/Inc/i2c.h)(0x6A997DA4)
 I (../Core/Inc/tim.h)(0x6A997DA4)
-I (../Core/Inc/AS5600.h)(0x6A9D7FCD)
+I (../Core/Inc/AS5600.h)(0x6AA3BA0D)
 I (../Core/Inc/config.h)(0x6AA3B59D)
-F (..\Core\Inc\AS5600.h)(0x6A9D7FCD)()
+F (..\Core\Inc\AS5600.h)(0x6AA3BA0D)()
 F (..\Core\Src\motorpwm.c)(0x6A9C1CAD)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o foc\motorpwm.o --omf_browse foc\motorpwm.crf --depend foc\motorpwm.d)
 I (../Core/Inc/main.h)(0x6A997DA5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x6A8A9F15)
@@ -139,7 +139,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x6A8A9F15)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\math.h)(0x5E8E3CC2)
 I (../Core/Inc/config.h)(0x6AA3B59D)
 F (..\Core\Inc\motorapp.h)(0x6A9C0C23)()
-F (../Core/Src/main.c)(0x6AA3B6AA)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o foc\main.o --omf_browse foc\main.crf --depend foc\main.d)
+F (..\Core\Inc\config.h)(0x6AA3B59D)()
+F (../Core/Src/main.c)(0x6AA3BA3E)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o foc\main.o --omf_browse foc\main.crf --depend foc\main.d)
 I (../Core/Inc/main.h)(0x6A997DA5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x6A8A9F15)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x6A997DA5)
@@ -173,7 +174,7 @@ I (../Core/Inc/i2c.h)(0x6A997DA4)
 I (../Core/Inc/tim.h)(0x6A997DA4)
 I (../Core/Inc/usart.h)(0x6A997DA4)
 I (../Core/Inc/gpio.h)(0x6A997DA4)
-I (../Core/Inc/AS5600.h)(0x6A9D7FCD)
+I (../Core/Inc/AS5600.h)(0x6AA3BA0D)
 I (../Core/Inc/motorpwm.h)(0x6A9AE2BB)
 I (../Core/Inc/FOC.h)(0x6AA3B286)
 I (../Core/Inc/motorapp.h)(0x6A9C0C23)
@@ -272,7 +273,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x6A8A9F15)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x6A8A9F15)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x6A8A9F15)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x6A8A9F15)
-F (../Core/Src/usart.c)(0x6AA3A124)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o foc\usart.o --omf_browse foc\usart.crf --depend foc\usart.d)
+F (../Core/Src/usart.c)(0x6AA3BA3D)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o foc\usart.o --omf_browse foc\usart.crf --depend foc\usart.d)
 I (../Core/Inc/usart.h)(0x6A997DA4)
 I (../Core/Inc/main.h)(0x6A997DA5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x6A8A9F15)
@@ -364,7 +365,6 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x6A8A9F15)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x6A8A9F15)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x6A8A9F15)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x6A8A9F15)
-F (..\Core\Inc\config.h)(0x6AA3B59D)()
 F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c)(0x6A8A9F15)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_FOC-IC:\Users\Lenovo\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Lenovo\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o foc\stm32f1xx_hal_gpio_ex.o --omf_browse foc\stm32f1xx_hal_gpio_ex.crf --depend foc\stm32f1xx_hal_gpio_ex.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x6A8A9F15)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x6A997DA5)

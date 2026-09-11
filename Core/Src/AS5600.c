@@ -10,7 +10,14 @@ static uint8_t pData[2];
 static volatile float mechanical_rpm;
 static volatile float angle_rad;
 static  uint8_t initial=1;
+static volatile uint8_t angle_valid = 0U;
 
+uint8_t AS5600_AngleIsValid(void)
+{
+	/*	0：上电后还没有成功收到过AS5600角度 
+		1：至少成功收到过一次完整角度 		*/
+    return angle_valid;  
+}
 	
 float AS5600_GetSpeed(void)
 {
@@ -38,6 +45,8 @@ void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c)
 		
 		float angle_new,angle_diff;
 		static float angle_last;
+		
+		angle_valid = 1U;
 		
 		if(initial)
 		{

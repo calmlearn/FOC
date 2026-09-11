@@ -40,10 +40,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define PI 3.14159265f
-#define dt 0.001
-#define e_zero_offset 3.9998f //电角度偏置
-#define angle_zero 1.469f //机械角度偏置
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -110,6 +107,7 @@ int main(void)
   MotorPWM_Enable();
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -189,19 +187,22 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	static uint16_t usart_cnt = 0;
     if (htim->Instance == TIM2)
     {
-		
         usart_cnt++;
 		
-		float mechanical_angle = AS5600_GetAngle();
-		
-		float electrical_angle = motorAngle(7.0f * mechanical_angle);
-		
-		SVPWM_FOC(0.0f, 0.2f, electrical_angle);
+		if(AS5600_AngleIsValid())
+		{
+			float mechanical_angle = AS5600_GetAngle();
+			
+			float electrical_angle = motorAngle(7.0f * mechanical_angle);
+			
+			SVPWM_FOC(0.0f, 0.2f, electrical_angle);
+		}
 		
 		HAL_StatusTypeDef I2C_statu =  AS5600_Read_RawAngle();
 		
 		if(usart_cnt>=10)
 		{
+			usart_cnt = 0;
 			uart_send_request = 1;
 		}
 		//接下来是闭环控制阶段
