@@ -7,4 +7,25 @@
 #define e_zero_offset 3.9998f //电角度偏置
 #define angle_zero 1.469f //机械角度偏置
 
+typedef struct{
+	float kp;
+	float ki;
+	float kd;
+	
+	float actual;
+	float actualold;
+	float target;
+	float out;
+	float outmax;
+	float outmin;
+	float errorint;
+	float errorold;
+	float errornew;
+	
+	float offset;
+	float intmax;
+	float intmin;
+	
+}pid;
+
 #endif

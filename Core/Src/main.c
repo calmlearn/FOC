@@ -31,6 +31,8 @@
 #include "motorapp.h"
 #include <string.h>
 #include "config.h"
+#include "Position_pid.h"
+#include "Speed_pid.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -55,6 +57,8 @@ static volatile uint8_t uart_send_request = 0;
 static volatile uint8_t uart_tx_busy = 0;
 static uint8_t uart_tx_buffer[12];
 
+pid Speed_pid;
+pid Position_pid;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -110,6 +114,17 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  SpeedPid_Init(&Speed_pid);
+  
+  Speed_pid.outmax =  0.5;
+  Speed_pid.outmin = -0.5;
+  Speed_pid.intmax =  0.2;
+  Speed_pid.intmin = -0.2;
+  
+  Speed_pid.target = 30.0f;
+  
+  PositionPid_Init(&Position_pid);
+  
   while (1)
   {
 		
@@ -192,10 +207,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		if(AS5600_AngleIsValid())
 		{
 			float mechanical_angle = AS5600_GetAngle();
+			float mechanical_rpm = AS5600_GetSpeed();
+			
+			SpeedPid_Update(&Speed_pid,mechanical_rpm);
 			
 			float electrical_angle = motorAngle(7.0f * mechanical_angle);
 			
-			SVPWM_FOC(0.0f, 0.2f, electrical_angle);
+			SVPWM_FOC(0.0f, Speed_pid.out, electrical_angle);
 		}
 		
 		HAL_StatusTypeDef I2C_statu =  AS5600_Read_RawAngle();

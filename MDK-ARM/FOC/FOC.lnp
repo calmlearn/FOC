@@ -11,6 +11,8 @@
 "foc\usart.o"
 "foc\stm32f1xx_it.o"
 "foc\stm32f1xx_hal_msp.o"
+"foc\speed_pid.o"
+"foc\position_pid.o"
 "foc\stm32f1xx_hal_gpio_ex.o"
 "foc\stm32f1xx_hal_i2c.o"
 "foc\stm32f1xx_hal.o"

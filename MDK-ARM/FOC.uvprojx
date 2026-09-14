@@ -474,6 +474,26 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f1xx_hal_msp.c</FilePath>
             </File>
+            <File>
+              <FileName>Speed_pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Speed_pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>Speed_pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\Speed_pid.h</FilePath>
+            </File>
+            <File>
+              <FileName>Position_pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Position_pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>Position_pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\Position_pid.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
