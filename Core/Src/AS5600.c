@@ -3,7 +3,7 @@
 #include "tim.h"
 #include "stdint.h"
 #include "AS5600.h"
-
+#include "FOC.h"
 #include "config.h"
 
 static uint8_t pData[2];
@@ -26,7 +26,7 @@ float AS5600_GetSpeed(void)
 
 float AS5600_GetAngle(void)
 {
-	return (angle_rad - angle_zero);
+	return motorAngleSigned(angle_rad - angle_zero);
 }
 
 HAL_StatusTypeDef AS5600_Read_RawAngle(void)
@@ -68,9 +68,10 @@ void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c)
 		{
 			angle_diff -= 2*PI;
 		}
-			
+		
+		//滤波		
 		float raw_rpm = angle_diff*60.0f/(dt*2.0f*PI);
-		float alph = 0.01;
+		float alph = 0.02;
 		mechanical_rpm += alph*(raw_rpm - mechanical_rpm);
     }
 }

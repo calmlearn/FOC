@@ -1,4 +1,5 @@
 #include "main.h"
+#include "FOC.h"
 #include "config.h"
 
 void PositionPid_Init(pid* p)
@@ -13,10 +14,12 @@ void PositionPid_Init(pid* p)
 
 void PositionPid_Update(pid* p,float actualnew)	//actualnew 为传入的最新测量值
 {
+	p->target = motorAngleSigned(p->target);
+	
 	p->actualold = p->actual;
 	p->actual = actualnew;
 	p->errorold = p->errornew;
-	p->errornew = p->target - p->actual;
+	p->errornew = motorAngleSigned(p->target - p->actual);
 	
 	if(p->ki == 0)
 	{
@@ -28,9 +31,10 @@ void PositionPid_Update(pid* p,float actualnew)	//actualnew 为传入的最新�
 		if(p->errorint< p->intmin){p->errorint = p->intmin;}
 	}
 	
+	
 	p->out = p->kp * p->errornew + p->ki * p->errorint + 
-						p->kd * (p->actualold - p->actual);
-//						p->kd * (p->errornew - p->errorold);
+						p->kd * motorAngleSigned(p->actualold - p->actual);
+//						p->kd * motorAngleSigned(p->errornew - p->errorold);
 	
 	if(p->out>p->outmax){p->out = p->outmax;}
 	if(p->out<p->outmin){p->out = p->outmin;}

@@ -10,6 +10,12 @@ float motorAngle(float angle)
 	return a>=0?a:(a+2*PI);
 }
 
+// 将弧度映射到 [-PI, PI)
+float motorAngleSigned(float angle)
+{
+    return motorAngle(angle + PI) - PI;
+}
+
 void SVPWM_FOC(float Ud,float Uq,float U_angle)
 {
 	U_angle = motorAngle(U_angle);
