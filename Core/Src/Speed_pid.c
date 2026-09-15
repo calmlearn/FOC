@@ -24,9 +24,8 @@ void SpeedPid_Update(pid* p,float actualnew)	//actualnew 为传入的最新测�
 	}else{
 		p->errorint += p->errornew;
 	
-	if(p->errorint>p->intmax){p->errorint = p->intmax;}
-	if(p->errorint<p->intmin){p->errorint = p->intmin;}
-	
+		if(p->errorint>p->intmax){p->errorint = p->intmax;}
+		if(p->errorint<p->intmin){p->errorint = p->intmin;}
 	}
 	
 	p->out = p->kp * p->errornew + p->ki * p->errorint + 

@@ -184,9 +184,21 @@ int main(void)
 	  Speed_pid.intmax =  0.3/Speed_pid.ki;
 	  Speed_pid.intmin = -0.3/Speed_pid.ki;
   }
-  Speed_pid.target = 30.0f;
   
   PositionPid_Init(&Position_pid);
+  Position_pid.kp = 0;
+  Position_pid.ki = 0;
+  Position_pid.kd = 0;
+	
+  Position_pid.outmax =  0;
+  Position_pid.outmin =  0;
+	
+  if(Position_pid.ki!=0)
+  {
+	  Position_pid.intmax = 0;
+	  Position_pid.intmin = 0;
+  }
+  Position_pid.target = 0.0f;  
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -300,19 +312,27 @@ void SystemClock_Config(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	static uint16_t usart_cnt = 0;
+	static uint16_t position_cnt = 0;
     if (htim->Instance == TIM2)
     {
         usart_cnt++;
+		position_cnt++;
 		
 		if(AS5600_AngleIsValid())
 		{
 			float mechanical_angle = AS5600_GetAngle();
 			float mechanical_rpm = AS5600_GetSpeed();
 			
+//			if(position_cnt>=5)
+//			{
+//				PositionPid_Update(&Position_pid,mechanical_angle);
+//				Speed_pid.target = Position_pid.out; 
+//			}
+			
 			SpeedPid_Update(&Speed_pid,mechanical_rpm);
 			
 			float electrical_angle = motorAngle(7.0f * mechanical_angle);
-			
+			//传入当前电角度只为计算三相占空比，转动快慢实际由Uq控制
 			SVPWM_FOC(0.0f, Speed_pid.out, electrical_angle);
 		}
 		
