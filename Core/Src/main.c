@@ -299,7 +299,6 @@ int main(void)
 	  Speed_pid.intmax =  0.3/Speed_pid.ki;
 	  Speed_pid.intmin = -0.3/Speed_pid.ki;
   }
-  Speed_pid.target = 50;
   
   PositionPid_Init(&Position_pid);
   Position_pid.kp = 5;
