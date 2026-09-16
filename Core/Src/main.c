@@ -302,9 +302,9 @@ int main(void)
   Speed_pid.target = 50;
   
   PositionPid_Init(&Position_pid);
-  Position_pid.kp = 0;
+  Position_pid.kp = 5;
   Position_pid.ki = 0;
-  Position_pid.kd = 0;
+  Position_pid.kd = 1;
 	
   Position_pid.outmax =  150.0f;
   Position_pid.outmin = -150.0f;
